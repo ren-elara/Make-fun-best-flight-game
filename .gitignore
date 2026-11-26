@@ -1,0 +1,6 @@
+sessions/
+artifacts/
+out/
+*.log
+node_modules/
+best-flight-game-20261126-0057-kit/

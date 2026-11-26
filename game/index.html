@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071521">
+  <title>AURELIA // Storm Courier</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main id="flight-deck" aria-label="AURELIA Storm Courier flight game">
+    <canvas id="flight-canvas" width="1280" height="720" tabindex="0" aria-label="Flight view. Press 1, 2 or 3 to choose a sortie, then Enter to launch. Arrow keys bank and pitch; W and S adjust throttle.">AURELIA requires a browser with Canvas 2D and JavaScript enabled.</canvas>
+    <canvas id="instrument-canvas" width="1280" height="720" aria-hidden="true"></canvas>
+    <div id="screen-reader-status" role="status" aria-live="polite"></div>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

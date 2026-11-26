@@ -1,0 +1,19 @@
+{
+  "name": "aurelia-storm-courier",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An original, offline island flight game",
+  "scripts": {
+    "start": "node serve.mjs",
+    "build": "node --import tsx main.ts",
+    "verify": "node tools/verify.mjs",
+    "verify:build": "node --import tsx tools/verify-build.mjs",
+    "capture": "node tools/capture.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "playwright-core": "1.57.0",
+    "tsx": "4.21.0"
+  }
+}
