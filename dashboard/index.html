@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Signal / Token Launch Radar</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the radar</a>
+  <div class="page-frame">
+    <header class="masthead">
+      <a class="wordmark" href="index.html" aria-label="Signal Radar home">
+        <span class="wordmark-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>SIGNAL<span class="wordmark-divider">/</span>RADAR</span>
+      </a>
+      <div class="masthead-meta">
+        <span class="live-indicator"><i></i> SNAPSHOT MODE</span>
+        <span id="snapshot-date">SEALED INPUT</span>
+      </div>
+    </header>
+
+    <main id="main" aria-busy="true">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> PROTOCOL INTELLIGENCE · 01</p>
+          <h1 id="page-title">Find the signal<br><span>before the ticker.</span></h1>
+          <p class="hero-intro">A ranked view of protocols with no token recorded, valued against live-token peers. Explore the evidence, inspect the range and decide what is worth your time.</p>
+          <p class="hero-caveat">A snapshot-based valuation model. It does not predict launches, confirm token absence or promise a return.</p>
+        </div>
+        <aside class="snapshot-card" aria-label="Snapshot summary">
+          <div class="snapshot-card-top"><span>SEALED MARKET SNAPSHOT</span><span class="snapshot-mark">S/01</span></div>
+          <div class="snapshot-date" id="snapshot-card-date">—</div>
+          <div class="snapshot-source" id="snapshot-source">DefiLlama protocol index</div>
+          <div class="snapshot-rule"><span>WATCHLIST FLOOR</span><strong id="snapshot-floor">—</strong></div>
+          <div class="snapshot-rule"><span>MODEL</span><strong id="model-version">—</strong></div>
+          <p class="snapshot-note">One frozen input. Re-running the model reproduces this board byte for byte.</p>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Radar coverage">
+        <article class="metric metric-primary">
+          <div class="metric-label"><span class="metric-dot"></span> WATCHLIST COVERED</div>
+          <div class="metric-value" id="coverage-count">—</div>
+          <div class="metric-foot">Every qualifying protocol in the sealed watchlist</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">PRE-TOKEN CANDIDATES</div>
+          <div class="metric-value" id="candidate-count">—</div>
+          <div class="metric-foot">Watchlist plus screened early candidates</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">LIVE-TOKEN PEERS</div>
+          <div class="metric-value" id="peer-count">—</div>
+          <div class="metric-foot">Market-cap / TVL comparables in snapshot</div>
+        </article>
+        <article class="metric metric-note">
+          <div class="metric-label">HOW TO READ THE BOARD</div>
+          <p>Implied value is a peer-relative market-cap estimate. The interval reflects comparable-token dispersion—not a confidence interval for a future launch.</p>
+        </article>
+      </section>
+
+      <section class="board-section" aria-labelledby="board-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span> THE RADAR</p>
+            <h2 id="board-heading">Activity with an open question.</h2>
+          </div>
+          <div class="board-legend"><span class="legend-square"></span> NO TOKEN DATA RECORDED <span class="legend-separator">·</span> RANKED BY IMPLIED VALUE</div>
+        </div>
+
+        <div class="board-toolbar">
+          <div class="view-switch" role="tablist" aria-label="Token status view">
+            <button id="tab-candidates" class="view-tab is-active" type="button" role="tab" aria-selected="true">Pre-token <span id="tab-candidate-count">—</span></button>
+            <button id="tab-live" class="view-tab" type="button" role="tab" aria-selected="false">Live tokens <span id="tab-live-count">—</span></button>
+          </div>
+          <div class="filters">
+            <label class="search-control">
+              <span class="visually-hidden">Search protocol, category or chain</span>
+              <span class="search-icon" aria-hidden="true"></span>
+              <input id="search" type="search" placeholder="Search protocol, category, chain" autocomplete="off">
+              <kbd>/</kbd>
+            </label>
+            <label class="select-control"><span class="visually-hidden">Filter category</span><select id="category-filter"><option value="all">All categories</option></select><span class="select-chevron" aria-hidden="true">⌄</span></label>
+            <label class="select-control"><span class="visually-hidden">Filter chain</span><select id="chain-filter"><option value="all">All chains</option></select><span class="select-chevron" aria-hidden="true">⌄</span></label>
+            <button id="reset-filters" class="reset-button" type="button" hidden>Clear</button>
+          </div>
+          <div class="result-meta"><span id="result-count">—</span><span class="meta-divider">/</span><span id="result-total">—</span><span class="meta-label">PROTOCOLS</span></div>
+        </div>
+
+        <div class="table-shell">
+          <div class="table-scroll">
+            <table class="radar-table">
+              <thead><tr>
+                <th class="rank-col" aria-sort="descending"><button data-sort="rank" type="button"># <span class="sort-mark">↓</span></button></th>
+                <th class="protocol-col"><button data-sort="name" type="button">PROTOCOL <span class="sort-mark"></span></button></th>
+                <th><button data-sort="category" type="button">SECTOR <span class="sort-mark"></span></button></th>
+                <th class="numeric"><button data-sort="tvl_usd" type="button">TVL <span class="sort-mark"></span></button></th>
+                <th class="numeric"><button data-sort="change_7d" type="button">7D FLOW <span class="sort-mark"></span></button></th>
+                <th class="numeric"><button data-sort="age_days" type="button">TRACKED <span class="sort-mark"></span></button></th>
+                <th class="value-col"><button data-sort="implied_value_usd" type="button">IMPLIED VALUE <span class="sort-mark"></span></button></th>
+                <th>SUPPORT</th>
+              </tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state" hidden>
+              <span class="empty-orbit" aria-hidden="true">◎</span>
+              <strong>No protocols in this slice.</strong>
+              <span>Adjust the search or filters to widen the radar.</span>
+              <button id="empty-reset" class="text-button" type="button">Reset filters</button>
+            </div>
+          </div>
+          <footer class="table-footer"><span id="footer-note">Select a protocol to inspect its valuation and farming plan.</span><span>SCROLL TO EXPLORE <span aria-hidden="true">↘</span></span></footer>
+        </div>
+      </section>
+
+      <section class="method-section" aria-labelledby="method-title">
+        <div class="method-intro">
+          <p class="eyebrow"><span class="eyebrow-line"></span> TRANSPARENT BY DESIGN</p>
+          <h2 id="method-title">A number you can<br>pull apart.</h2>
+          <p>Every estimate starts with observed token peers and shows the inputs that move the result. No hand-picked protocol scores, launch-probability claims or hidden weights.</p>
+        </div>
+        <div class="method-steps">
+          <article class="method-step"><span class="method-index">01</span><div><h3>Start with footprint</h3><p>Candidate TVL anchors the estimate; it is not mistaken for token value.</p></div><span class="method-equation">TVL</span></article>
+          <article class="method-step"><span class="method-index">02</span><div><h3>Benchmark like with like</h3><p>Comparable live-token market-cap / TVL ratios are robustly clipped, then shrunk toward the market-wide median.</p></div><span class="method-equation">PEERS</span></article>
+          <article class="method-step"><span class="method-index">03</span><div><h3>Bound the modifiers</h3><p>Seven-day growth, protocol tenure and chain breadth adjust value modestly and transparently.</p></div><span class="method-equation">× FACTORS</span></article>
+          <article class="method-step"><span class="method-index">04</span><div><h3>Show the spread</h3><p>The 25th–75th peer range makes disagreement visible; sample support labels how much to trust the comparison.</p></div><span class="method-equation">RANGE</span></article>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <a class="wordmark footer-wordmark" href="index.html"><span class="wordmark-icon" aria-hidden="true"><i></i><i></i><i></i></span><span>SIGNAL<span class="wordmark-divider">/</span>RADAR</span></a>
+        <p>Snapshot: <span id="footer-date">—</span> <span class="footer-divider">·</span> Source: DefiLlama protocol index <span class="footer-divider">·</span> No network requests</p>
+        <button id="method-link" class="text-button" type="button">MODEL NOTES ↑</button>
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-name">
+    <div class="detail-topline"><span><span class="live-indicator"><i></i> PROTOCOL DOSSIER</span></span><button id="detail-close" class="close-button" type="button" aria-label="Close protocol details">×</button></div>
+    <div id="detail-content" class="detail-content"></div>
+  </dialog>
+
+  <noscript><p class="no-script">JavaScript is required to render the sealed, local radar data. The page makes no network requests.</p></noscript>
+  <script src="../data.js"></script>
+  <script src="format.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

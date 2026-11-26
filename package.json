@@ -1,14 +1,13 @@
 {
-  "name": "aurelia-storm-courier",
+  "name": "signal-token-radar",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "An original, offline island flight game",
+  "description": "A deterministic, offline token launch radar built from the sealed DefiLlama snapshot",
   "scripts": {
-    "start": "node serve.mjs",
+    "start": "node tools/serve.mjs",
     "build": "node --import tsx main.ts",
-    "verify": "node tools/verify.mjs",
-    "verify:build": "node --import tsx tools/verify-build.mjs",
+    "verify": "node --import tsx tools/verify.mjs",
     "capture": "node tools/capture.mjs"
   },
   "license": "MIT",
