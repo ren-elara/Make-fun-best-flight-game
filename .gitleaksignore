@@ -1,0 +1,23 @@
+# Audited false positives in the unchanged, Git-ignored official competition CLI.
+# Only these path/rule/line fingerprints are ignored; default detection remains enabled.
+# Discord matches are environment-variable names, not credential values.
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:discord-client-secret:192457
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:discord-client-secret:192458
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:discord-client-secret:192460
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:discord-client-secret:192464
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:discord-client-secret:192467
+# Remaining matches are JavaScript identifiers, property reads and object spreads.
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:206017
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:442151
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:442434
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:571433
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:625104
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:678952
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:688585
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:689034
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:704119
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:735692
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:744161
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:767870
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:863006
+best-flight-game-20261126-0057-kit/cli/makefun.mjs:generic-api-key:895434

@@ -1,0 +1,74 @@
+:root { color-scheme: dark; --ink: #eff8ef; --muted: #a6c7c6; --amber: #ffd691; --glass: #102d36df; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; background: #143947; color: var(--ink); font: 12px/1.5 'Trebuchet MS', Arial, sans-serif; }
+button { font: inherit; cursor: pointer; color: inherit; }
+button:focus-visible, canvas:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.hidden { display: none !important; }
+#flight { position: fixed; inset: 0; width: 100%; height: 100%; outline-offset: -3px; }
+.masthead { position: absolute; inset: 22px 28px auto; display: flex; justify-content: space-between; align-items: center; pointer-events: none; text-shadow: 0 2px 8px #0b2638; }
+.wordmark { font-size: 26px; font-weight: bold; letter-spacing: .3em; }
+.wordmark span { display: block; color: #c8dddd; font-size: 9px; letter-spacing: .45em; margin-top: -3px; }
+.radio { font-size: 10px; letter-spacing: .15em; display: flex; align-items: center; gap: 10px; }
+.radio i { width: 5px; height: 5px; border-radius: 50%; background: #a5e0ba; box-shadow: 0 0 8px #7bd6ad; }
+.radio #clock { margin-left: 18px; font: 14px monospace; }
+#hud { pointer-events: none; }
+.contract-panel { position: absolute; top: 110px; left: 28px; width: 250px; padding: 16px 18px; background: linear-gradient(120deg, #102e38ed, #163846a6); border-left: 2px solid var(--amber); }
+small, .eyebrow { letter-spacing: .16em; font-size: 9px; color: var(--muted); }
+.contract-panel small { color: var(--amber); }
+h1 { font-size: 21px; font-weight: 400; margin: 5px 0 7px; letter-spacing: .01em; }
+.contract-panel p { font-size: 11px; line-height: 1.7; color: #bfd7d8; margin: 0 0 14px; min-height: 38px; }
+.progress, .meter { height: 3px; background: #9dcccc28; }
+.progress span, .meter span { display: block; height: 100%; background: var(--amber); transition: width .2s; }
+.contract-meta { display: flex; justify-content: space-between; color: var(--muted); font: 9px monospace; margin-top: 9px; }
+.navigation { position: absolute; top: 91px; left: 50%; transform: translateX(-50%); text-align: center; text-shadow: 0 2px 4px #153748; }
+.navigation .eyebrow { color: #d9e9e4; font-size: 8px; }
+#compass { font: 11px monospace; letter-spacing: 5px; margin: 10px 0 2px; }
+#heading { font: 32px monospace; color: #fff6da; }
+#heading span { font-size: 15px; }
+.resources { position: absolute; right: 28px; top: 110px; width: 170px; background: #102e38be; padding: 14px; }
+.resources label { display: flex; justify-content: space-between; font: 9px monospace; letter-spacing: .09em; margin-bottom: 5px; }
+.resources .meter { margin-bottom: 13px; }
+.meter.hull span { background: #94d4be; }
+.resources small { font: 8px monospace; letter-spacing: .05em; }
+#notice { position: absolute; top: 45%; left: 50%; transform: translateX(-50%); max-width: 550px; padding: 8px 16px; background: #12333cbb; border-bottom: 1px solid #e3c98e55; text-align: center; font-size: 11px; letter-spacing: .04em; }
+#notice:empty { display: none; }
+#warning { position: absolute; top: 37%; left: 50%; transform: translateX(-50%); color: #ffcc8a; font: bold 15px monospace; letter-spacing: .2em; text-shadow: 0 0 15px #652d19; }
+.instruments { position: absolute; bottom: 54px; left: 50%; transform: translateX(-50%); width: min(860px, calc(100% - 56px)); height: 132px; display: flex; justify-content: space-around; align-items: center; gap: 12px; padding: 12px 18px; background: linear-gradient(160deg, #183d47f5, #0c222df5); border: 1px solid #b0d8d64a; border-top: 2px solid #e5d5ac9c; border-radius: 28px 28px 10px 10px; box-shadow: 0 12px 40px #041c2ba1, inset 0 0 30px #72a8a00a; }
+.instrument { width: 105px; text-align: center; }
+.instrument small { font-size: 8px; letter-spacing: .11em; }
+.instrument strong { display: block; font: 37px/1.3 monospace; color: #f2dfb7; text-shadow: 0 0 12px #e7ba6350; }
+.instrument span { display: block; font: 8px monospace; color: #98bab9; letter-spacing: .1em; }
+.instrument strong span { display: inline; font-size: 17px; }
+.compact { width: 108px; }
+.compact strong { font-size: 27px; line-height: 1.8; }
+.ticks { height: 7px; margin: 7px 8px 0; background: repeating-linear-gradient(90deg, #92bab94d 0 1px, transparent 1px 9px); border-top: 1px solid #91bcb74d; }
+.attitude { width: 94px; height: 94px; position: relative; overflow: hidden; border-radius: 50%; border: 4px solid #091f2a; box-shadow: 0 0 0 1px #7eaea9; flex-shrink: 0; }
+#attitude-ball { position: absolute; inset: -50%; background: linear-gradient(#52838b 50%, #a0754c 50%); }
+.attitude-line { position: absolute; top: 50%; width: 100%; border-top: 2px solid #ffe2aa; }
+.wings { position: absolute; inset: 26px 0 auto; text-align: center; color: #ffe4a0; font-size: 21px; letter-spacing: 4px; }
+.attitude small { position: absolute; bottom: 9px; width: 100%; text-align: center; font-size: 6px; color: white; }
+#map { height: 105px; width: 126px; border-left: 1px solid #8da8a333; padding-left: 8px; }
+footer { position: absolute; bottom: 19px; left: 28px; right: 28px; display: flex; justify-content: space-between; color: #b5cdcc; font: 8px monospace; letter-spacing: .05em; text-shadow: 0 1px 3px #082833; }
+footer b { color: #ffe4b4; margin: 0 2px 0 9px; }
+.overlay { position: fixed; inset: 0; display: flex; align-items: center; background: linear-gradient(90deg, #081f31f5, #0d2c3cb8 43%, #0d2c3c15 75%); }
+.brief-card { width: 430px; margin: 66px 0 24px 7%; }
+h2 { font: 46px/1.03 Georgia, serif; margin: 17px 0; letter-spacing: -.03em; font-weight: normal; }
+h2 em { color: var(--amber); font-weight: normal; }
+.brief-card > p { color: #b9d0d2; line-height: 1.8; font-size: 12px; }
+.contracts { display: flex; margin: 25px 0 15px; gap: 8px; }
+.contracts button { text-align: left; border: 1px solid #739da957; background: #0b293b80; padding: 11px 12px; color: #8ab2bb; font: 20px monospace; flex: 1; }
+.contracts span { display: block; font: 8px monospace; letter-spacing: .02em; margin-top: 6px; }
+.contracts .selected { border-color: var(--amber); color: var(--amber); background: #eec77c12; }
+#brief-description { min-height: 45px; }
+.brief-card p.help { font: 10px/1.9 monospace; color: #96b3bf; }
+.launch { padding: 14px 19px; background: var(--amber); color: #173039; border: 0; letter-spacing: .16em; font-weight: bold; width: 100%; margin-top: 10px; }
+.launch span { float: right; font-size: 18px; }
+#best { display: block; text-align: center; margin-top: 14px; font-size: 8px; }
+.dialog { margin: auto; width: min(470px, calc(100% - 50px)); padding: 35px; background: #0f2b3aed; border: 1px solid #e4cb9270; text-align: center; }
+.dialog h2 { font-size: 38px; }
+.dialog p { color: #aecad0; }
+.secondary { width: 100%; padding: 14px; background: transparent; border: 1px solid #7eaaae66; margin-top: 12px; letter-spacing: .12em; font-size: 10px; }
+#result-score { display: block; font: 28px monospace; color: var(--amber); margin: 18px; }
+#sound { position: absolute; bottom: 211px; right: 28px; background: #122f3cbb; border: 1px solid #8cafaf55; font: 8px monospace; padding: 8px 12px; letter-spacing: .12em; }
+@media (max-width: 850px) { .contract-panel { width: 200px; left: 16px; top: 90px; } .resources { width: 135px; right: 16px; top: 90px; } .navigation { top: 86px; } .instruments { gap: 6px; padding: 10px; width: calc(100% - 32px); } #map { width: 95px; } footer { font-size: 7px; left: 12px; right: 12px; } footer > span:last-child { display: none; } .masthead { inset: 16px; } .radio { font-size: 8px; } }
+@media (max-height: 690px) { .brief-card { margin: 55px 0 10px 5%; } h2 { font-size: 33px; margin: 8px 0; } .contracts { margin: 12px 0 8px; } .brief-card > p { margin: 7px 0; } .launch { padding: 11px; } .instruments { height: 108px; bottom: 40px; } .contract-panel { top: 88px; } }

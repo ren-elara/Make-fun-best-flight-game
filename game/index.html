@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102e38">
+  <title>AURELIA — Storm Courier</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="flight" aria-label="Three dimensional chase view of your courier aircraft" tabindex="0"></canvas>
+  <header class="masthead">
+    <div class="wordmark">AURELIA <span>STORM COURIER</span></div>
+    <div class="radio"><i></i> LANTERN AIR SERVICE <span id="clock">00:00</span></div>
+  </header>
+  <main id="hud" aria-label="Flight instruments">
+    <section class="contract-panel"><small id="sector">01 / LANTERN COAST</small><h1 id="mission-title">The light relay</h1><p id="objective">Follow the amber gates to Lantern Field.</p><div class="progress"><span id="route-progress"></span></div><div class="contract-meta"><span id="gate-count">GATE 01 / 04</span><span id="distance">1.2 KM</span></div></section>
+    <section class="navigation"><div class="eyebrow">MAGNETIC HEADING</div><div id="compass">330 · · N · · 030</div><strong id="heading">000<span>°</span></strong></section>
+    <section class="resources"><label>FUEL <b id="fuel">100%</b></label><div class="meter"><span id="fuel-bar"></span></div><label>AIRFRAME <b id="hull">100%</b></label><div class="meter hull"><span id="hull-bar"></span></div><small id="wind">WIND 270° / 04 M/S</small></section>
+    <div id="notice" role="status" aria-live="polite">LANTERN TOWER / You are cleared for the coast.</div>
+    <div id="warning" role="status"></div>
+    <section class="instruments">
+      <div class="instrument"><small>AIRSPEED</small><strong id="speed">068</strong><span>M / S</span><div class="ticks"></div></div>
+      <div class="instrument"><small>ALTITUDE MSL</small><strong id="altitude">0360</strong><span>METRES</span><div class="ticks"></div></div>
+      <div class="attitude"><div id="attitude-ball"><div class="attitude-line"></div></div><div class="wings">━ ━</div><small>ATTITUDE</small></div>
+      <div class="instrument compact"><small>VERTICAL SPEED</small><strong id="vertical">+0.0</strong><span>M / S</span></div>
+      <div class="instrument compact"><small>THROTTLE</small><strong id="throttle">62<span>%</span></strong><span id="gear">GEAR UP</span></div>
+      <canvas id="map" width="160" height="134" aria-label="Route map with current aircraft location"></canvas>
+    </section>
+    <footer><span><b>↑ ↓</b> PITCH <b>← →</b> BANK <b>W S</b> THROTTLE <b>G</b> GEAR <b>B</b> BRAKE</span><span id="control-mode">M MOUSE · V CAMERA · P PAUSE</span></footer>
+  </main>
+  <section id="briefing" class="overlay" aria-label="Contract briefing">
+    <div class="brief-card"><small class="eyebrow">LANTERN AIR SERVICE / DISPATCH</small><h2>Carry the<br><em>last light</em> home.</h2><p>One aircraft. A scattered island chain.<br>A coast that is counting on you.</p><div class="contracts" role="group" aria-label="Choose contract"><button data-mission="0" class="selected">01 <span>LIGHT RELAY</span></button><button data-mission="1">02 <span>CREW RESCUE</span></button><button data-mission="2">03 <span>NIGHT RETURN</span></button></div><p id="brief-description">Thread four relay gates, then land at Lantern Field. Use smooth turns to preserve your fuel and cargo.</p><p class="help">ARROWS steer · W/S throttle · G gear<br>Land heading 000° · under 57 m/s · descent under 4.5 m/s<br>Hold B to brake after touchdown.</p><button id="launch" class="launch">LAUNCH SORTIE <span>↗</span></button><small id="best">YOUR COAST. YOUR CALL.</small></div>
+  </section>
+  <section id="pause" class="overlay hidden" aria-label="Flight paused"><div class="dialog"><small>LANTERN AIR SERVICE</small><h2>Holding pattern.</h2><p>Flight paused. Press P or Escape to continue.</p><button id="resume" class="launch">RESUME FLIGHT ↗</button><button id="return" class="secondary">RETURN TO DISPATCH</button></div></section>
+  <section id="result" class="overlay hidden" aria-label="Sortie result"><div class="dialog"><small id="result-label">SORTIE COMPLETE</small><h2 id="result-title">Welcome home.</h2><p id="result-message"></p><strong id="result-score"></strong><button id="retry" class="launch">FLY AGAIN ↗</button><button id="dispatch" class="secondary">CHOOSE CONTRACT</button></div></section>
+  <button id="sound" aria-label="Enable engine audio" aria-pressed="false">SOUND OFF</button>
+  <script src="src/world.js"></script>
+  <script src="src/flight.js"></script>
+  <script src="src/render.js"></script>
+  <script src="src/hud.js"></script>
+  <script src="src/audio.js"></script>
+  <script src="src/main.js"></script>
+</body>
+</html>

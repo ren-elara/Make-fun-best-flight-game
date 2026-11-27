@@ -1,43 +1,61 @@
-[![token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01)
-[![rank](https://make.fun/badge/token-radar-01/ren-elara/Make-fun-best-flight-game/rank.svg)](https://make.fun/bounty/token-radar-01)
-[![reward](https://make.fun/badge/token-radar-01/ren-elara/Make-fun-best-flight-game/reward.svg)](https://make.fun/bounty/token-radar-01)
+[![Make the best flight game](https://make.fun/badge/best-flight-game-20261126-0057.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+[![rank](https://make.fun/badge/best-flight-game-20261126-0057/ren-elara/Make-fun-best-flight-game/rank.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+[![reward](https://make.fun/badge/best-flight-game-20261126-0057/ren-elara/Make-fun-best-flight-game/reward.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
 
-# SIGNAL / RADAR
+# AURELIA / Storm Courier
 
-An offline token-launch radar for the `token-radar-01` make.fun bounty. It reads the sealed protocol snapshot, ranks protocols with no token recorded by a reproducible implied market-cap model, and keeps live-token peers in a separate reference view.
+Carry the last light home. Fly an original twin-boom courier through a sculpted island chain, recover a stranded weather crew, and land at Lantern Field before your fuel runs out. Three contracts progress from a daylight relay to a low rescue pass and a night approach. A software 3D renderer keeps the game playable on machines without WebGL.
 
-## Run the entry
+## Play
 
-The competition runner invokes the standard-library entrypoint directly:
-
-```sh
-node main.ts
-```
-
-For local development, the installed `tsx` runner supports this environment's Node build:
+Open `game/index.html` directly in desktop Chrome, or serve it:
 
 ```sh
-node --import tsx main.ts --input /path/to/snapshot.json --output out
-node tools/serve.mjs
+npm start
 ```
 
-Open `http://127.0.0.1:4173/` to explore the local dashboard. The delivered page reads only the generated `data.js`; it makes no network requests.
+Visit `http://127.0.0.1:4173`. Every asset, script, and sound is generated locally; the game has no network dependency and no build step. Select a contract and press **Launch sortie** or **Enter**. The briefing describes each route and its landing requirements.
 
-## Model
+| Control | Action |
+| --- | --- |
+| Arrow keys | Pitch and bank (up climbs) |
+| W / S | Increase / decrease throttle |
+| A / D | Rudder; fine heading correction |
+| Click flight view / M | Toggle mouse steering |
+| G | Landing gear |
+| B | Wheel brakes; hold after touchdown |
+| V | Chase / close chase camera |
+| P / Escape | Pause / resume |
+| R | Restart current contract |
+| 1 / 2 / 3 | Choose a contract from the briefing |
 
-Each pre-token row is scored from snapshot values only:
+Fly through the illuminated gates in order. Rescue requires a slow, low pass; line up early and use throttle discipline. Lower the gear for landing, align with runway heading 000°, keep speed below 57 m/s and descent below 4.5 m/s at touchdown, then brake to a stop. Fuel, hull integrity, stall warning, vertical speed, a heading tape, and a route map support decisions throughout the sortie. Best scores are saved locally when browser storage is available.
 
-`TVL × shrunk comparable-token market-cap/TVL median × bounded 7d growth × tenure × chain breadth`
+## Build the hand-in
 
-Comparable ratios are clipped to robust global quantiles and selected by category/shared-chain cohorts when the cohort is large enough. Growth is bounded to `-50%..+100%`; tenure and chain breadth are deliberately modest modifiers. The detail drawer exposes the peer set, sample count, range, factor values, caveats, and a six-step farming plan with explicit cost and time.
-
-The board always covers the sealed watchlist and adds screened pre-token protocols omitted by the watchlist, at any snapshot TVL. It does not claim that a missing DefiLlama token field proves token absence or that an implied value predicts a launch.
-
-## Checks
+Use Node.js 22.18 or later. The entrypoint uses only the Node standard library and the unchanged official `vendor/makefun-game.ts` helper:
 
 ```sh
-TOKEN_RADAR_SNAPSHOT=/path/to/snapshot.json node tools/capture.mjs
-node --import tsx tools/verify.mjs /path/to/snapshot.json
+MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-Set `TOKEN_RADAR_SNAPSHOT` for `capture.mjs`. The capture script renders the board, a protocol detail drawer, and a filtered view in Chromium, then checks for browser errors, network requests, and screenshot size limits. The verifier checks watchlist coverage, ranking invariants, farm plans, deterministic output, dossier generation, and local dashboard sources.
+`out/` receives `game/`, four real browser screenshots, and a byte-reproducible `dossier.json`. The local Alpine Node binary was compiled without TypeScript support: use `MAKEFUN_OUTPUT_DIR=out npm run build` there. Development scripts use `tsx` for that reason; the competition runtime needs no installed packages. The kit stays in `best-flight-game-20261126-0057-kit/`, excluded locally from Git.
+
+## Verify
+
+```sh
+npm ci
+npm test
+npm run verify
+npm run test:browser
+npm run capture
+gitleaks detect --source . --no-git --redact
+```
+
+Browser checks use a local Chromium (`CHROMIUM_PATH`, default `/usr/bin/chromium`) through Playwright. They exercise launch, keyboard and mouse input, pause, restart, mission selection, resize, and file-based offline play. Capture uses actual in-game contract starts, including the night landing approach; images are unedited browser renders at 1280 × 800. Build verification checks the helper against the kit when present, local references, screenshot limits, dossier bytes, two clean output trees, and a fresh source copy with no installed dependencies (using the development TypeScript loader outside that copy).
+
+Simulation tests cover gate crossings, stall and fuel behavior, rescue conditions, terrain collisions, runway alignment, hard landings, stopped rollout, and deterministic fixed-step controls. The competition's sealed judge and transcript authorship checks run separately on make.fun; local tests do not claim a judge score or transcript percentage.
+
+The secret scan retains the default rules. `.gitleaksignore` lists 19 individually reviewed false-positive fingerprints in the unchanged, ignored kit CLI: environment-variable names and JavaScript property expressions. No application path or credential rule is broadly excluded.
+
+The older token dashboard sources are retained for history; the flight entrypoint does not load them. MIT licensed.

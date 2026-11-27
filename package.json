@@ -1,14 +1,16 @@
 {
-  "name": "signal-token-radar",
+  "name": "aurelia-storm-courier",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "A deterministic, offline token launch radar built from the sealed DefiLlama snapshot",
+  "description": "An original offline flight game over the Lantern archipelago",
   "scripts": {
-    "start": "node tools/serve.mjs",
+    "start": "node tools/serve-flight.mjs",
     "build": "node --import tsx main.ts",
-    "verify": "node --import tsx tools/verify.mjs",
-    "capture": "node tools/capture.mjs"
+    "test": "node --test tests/flight.test.mjs",
+    "verify": "node --import tsx tools/verify-flight.mjs",
+    "test:browser": "node tools/browser-flight.mjs",
+    "capture": "node tools/browser-flight.mjs --capture"
   },
   "license": "MIT",
   "devDependencies": {
