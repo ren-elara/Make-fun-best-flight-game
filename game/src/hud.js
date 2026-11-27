@@ -71,7 +71,7 @@
       text('clock', `${pad(Math.floor(seconds / 60), 2)}:${pad(seconds % 60, 2)}`);
       text('sector', `${pad(state.mission + 1, 2)} / ${contract.sector}`);
       text('mission-title', contract.name);
-      text('objective', state.grounded ? 'Hold B to brake. Keep the rollout straight.' : target.kind === 'runway' ? 'Land runway 00. Gear down · slow descent · brake.' : target.kind === 'rescue' ? 'Recover the weather crew. Cross at 36–58 m/s.' : 'Follow the amber gates to Lantern Field.');
+      text('objective', state.grounded ? 'Hold B to brake. Keep the rollout straight.' : state.rescued ? 'Protect the weather crew. Keep bank gentle until Lantern Field.' : target.kind === 'runway' ? 'Land runway 00. Gear down · slow descent · brake.' : target.kind === 'rescue' ? 'Recover the weather crew. Cross at 36–58 m/s.' : 'Follow the amber gates to Lantern Field.');
       text('gate-count', state.gate === contract.gates.length ? 'CLEARED TO LAND / RWY 00' : `GATE ${pad(state.gate + 1, 2)} / ${pad(contract.gates.length, 2)}`);
       text('distance', `${(Math.hypot(target.x - state.x, target.z - state.z) / 1000).toFixed(1)} KM`);
       element('route-progress').style.width = `${state.gate / contract.gates.length * 100}%`;
@@ -87,6 +87,12 @@
       text('hull', `${Math.ceil(state.hull)}%`);
       element('fuel-bar').style.width = `${state.fuel}%`;
       element('hull-bar').style.width = `${state.hull}%`;
+      const crewVisible = state.mission === 1 && state.rescued;
+      element('crew-resource').classList.toggle('hidden', !crewVisible);
+      if (crewVisible) {
+        text('crew', `${Math.ceil(state.crew)}%`);
+        element('crew-bar').style.width = `${state.crew}%`;
+      }
       element('fuel-bar').style.background = state.fuel < 15 ? '#ff9271' : '';
       text('notice', state.messageTime > 0 ? state.message : '');
       text('warning', state.warning);

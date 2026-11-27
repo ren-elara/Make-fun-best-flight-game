@@ -29,7 +29,7 @@ Visit `http://127.0.0.1:4173`. Every asset, script, and sound is generated local
 | R | Restart current contract |
 | 1 / 2 / 3 | Choose a contract from the briefing |
 
-Fly through the illuminated gates in order. Rescue requires a slow, low pass; line up early and use throttle discipline. Lower the gear for landing, align with runway heading 000°, keep speed below 57 m/s and descent below 4.5 m/s at touchdown, then brake to a stop. Fuel, hull integrity, stall warning, vertical speed, a heading tape, and a route map support decisions throughout the sortie. Best scores are saved locally when browser storage is available.
+Fly through the illuminated gates in order. Rescue requires a slow, low pass; after pickup, keep the wings level and speed below 58 m/s so the crew reaches home safely. Lower the gear for landing, align with runway heading 000°, keep speed below 57 m/s and descent below 4.5 m/s at touchdown, then brake to a stop. Fuel, crew safety, hull integrity, stall warning, vertical speed, a heading tape, and a route map support decisions throughout the sortie. Best scores are saved locally when browser storage is available.
 
 ## Build the hand-in
 

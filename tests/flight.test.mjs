@@ -106,6 +106,17 @@ test('rescue requires a 36–58 m/s gate crossing', () => {
   checkGate(state, { ...state, z: gate.z - 10 });
   assert.equal(state.gate, 2);
   assert.equal(state.rescued, true);
+  assert.equal(state.crew, 100);
+});
+
+test('rescued crew rewards a steady return and degrades in rough air', () => {
+  const steady = { ...airborne(1), rescued: true, crew: 100, speed: 54, throttle: 0 };
+  advance(steady, 8, { roll: 0, pitch: 0, throttle: 0 });
+  assert.equal(steady.crew, 100);
+  const rough = { ...airborne(1), rescued: true, crew: 100 };
+  advance(rough, 8, { roll: 1, pitch: 0, throttle: 0 });
+  assert.ok(rough.crew < 100);
+  assert.equal(rough.status, 'flying');
 });
 
 test('terrain collision explains the failure', () => {

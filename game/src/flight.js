@@ -12,7 +12,7 @@
       fuel: contract.fuel, hull: 100, gate: 0, elapsed: 0, score: 0, combo: 0,
       gear: false, grounded: false, vertical: 0, status: 'briefing', reason: '',
       message: 'LANTERN TOWER / You are cleared for the coast.', messageTime: 6,
-      stall: false, rescued: false, warning: '', lastGateZ: contract.start.z };
+      stall: false, rescued: false, crew: null, crewWarning: false, warning: '', lastGateZ: contract.start.z };
   }
 
   function announce(state, text, seconds = 5) {
@@ -59,7 +59,11 @@
     state.gate++;
     state.combo++;
     state.score += 200 + precision * state.combo;
-    if (target.kind === 'rescue') state.rescued = true;
+    if (target.kind === 'rescue') {
+      state.rescued = true;
+      state.crew = 100;
+      state.crewWarning = false;
+    }
     const last = state.gate === contracts[state.mission].gates.length;
     announce(state, target.kind === 'rescue' ? 'CREW ABOARD / Bring them safely to Lantern Field.' :
       last ? 'LANTERN TOWER / Cleared runway 00. Gear down. Land and hold B to brake.' : `RELAY LOCKED / Precision ${precision}% · chain ×${state.combo}`);
@@ -127,6 +131,19 @@
           state.score += Math.round(state.fuel * 15 + state.hull * 8 + Math.max(0, contracts[state.mission].time - state.elapsed) * 5);
           state.reason = state.rescued ? 'Weather crew delivered safely. The coast has its keepers back.' : 'Cargo delivered. The Lantern chain is burning bright again.';
         }
+      }
+    }
+    if (state.rescued && state.status === 'flying') {
+      const roughAir = Math.max(0, Math.abs(state.roll) - .32) * 2.6 +
+        Math.max(0, state.speed - 58) * .03 + Math.max(0, Math.abs(state.vertical) - 9) * .012;
+      state.crew = Math.max(0, state.crew - roughAir * dt);
+      if (state.crew < 70 && !state.crewWarning) {
+        state.crewWarning = true;
+        announce(state, 'ROUGH AIR / Level the wings and ease back to protect the crew.', 4);
+      }
+      if (state.crew <= 0) {
+        state.status = 'incomplete';
+        state.reason = 'The weather crew could not endure the rough return. Fly the rescue pass slower and hold a steady line.';
       }
     }
     if (state.status === 'flying' && state.hull <= 0) crash(state, 'Airframe failure. Keep your speed below the structural limit.');
